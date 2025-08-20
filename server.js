@@ -63,8 +63,7 @@ app.post("/chat", validateChat, async (req, res) => {
     );
 
     const response_from_llm = response.data?.candidates?.[0]?.content?.parts[0]?.text || "No response from Gemini";
-    return res.status(200).json(successResponse({ response: response_from_llm }));
-
+    return res.json({ response: response_from_llm });
   } catch (error) {
     console.error("Google Gemini API error:", error?.response?.data || error.message || error);
     return res.status(500).json(errorResponse("Internal Server Error", 500));
