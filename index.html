@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Chat API - Documentation</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background: #f5f5f5; }
+        .container { max-width: 900px; margin: 2rem auto; background: #fff; padding: 2rem; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; }
+        h2 { color: #34495e; margin-top: 1.5rem; }
+        pre { background: #ecf0f1; padding: 1rem; border-radius: 5px; overflow-x: auto; }
+        a { color: #2980b9; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        ul { margin-left: 1.5rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the LLM Chat API</h1>
+        <p>This is your custom LLM AI backend API documentation.</p>
+
+        <h2>Available Endpoints</h2>
+        <ul>
+            <li>
+                <strong>POST /chat</strong> - Send any text prompt and receive a response from LLM AI.<br>
+                <strong>Request Body:</strong> <pre>{ "chat": "Your question here" }</pre>
+                <strong>Response:</strong> <pre>{ "status": "success", "data": { "response": "LLM response here" } }</pre>
+            </li>
+            <li>
+                <strong>GET /health</strong> - Check if the server is running.<br>
+                <strong>Response:</strong> <pre>{ "status": "success", "data": { "status": "Server is healthy" } }</pre>
+            </li>
+        </ul>
+
+        <h2>How to Run</h2>
+        <ol>
+            <li>Install dependencies:
+                <pre>npm install express cors axios dotenv</pre>
+            </li>
+            <li>Create a <code>.env</code> file with:
+                <pre>
+GEMINI_API_KEY=YOUR_GOOGLE_API_KEY
+PORT=3000
+                </pre>
+            </li>
+            <li>Start the server:
+                <pre>node server.js</pre>
+            </li>
+            <li>Expose publicly (for testing) using ngrok:
+                <pre>ngrok http 3000</pre>
+                This gives a public URL like <code>https://abcd1234.ngrok.io</code>
+            </li>
+            <li>Test the /chat endpoint:
+                <pre>
+curl -X POST "https://abcd1234.ngrok.io/chat" \\
+-H "Content-Type: application/json" \\
+-d '{"chat": "Hello LLM"}'
+                </pre>
+            </li>
+        </ol>
+
+        <h2>Notes</h2>
+        <ul>
+            <li>All responses are structured as <code>{ status: "success"/"error", data/error }</code>.</li>
+            <li>Validation ensures 'chat' field is required.</li>
+            <li>Errors from the AI backend are handled gracefully.</li>
+            <li>Review the full source code here: <a href="https://github.com/07Akashh/LLM-AI-Backend.git" target="_blank">GitHub Repository</a></li>
+        </ul>
+    </div>
+</body>
+</html>
